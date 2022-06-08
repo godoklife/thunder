@@ -15,9 +15,17 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .zindex2_div{
 	border: solid 1px red;
 	z-index: 2;
+	
 }
 
 .left_position{
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	display: inline-flex;
+	background-color: #ffffff;
+}
+.right_position{
 	position: absolute;
 	right: 50px;
 	top: 100px;

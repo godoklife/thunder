@@ -1,42 +1,59 @@
 package dto;
 
 public class Board {
-	private long boardno;	// PK, int unsigned
+	private long boardpkno;	// pk
+	private byte boardcategory;	// 게시판 카테고리
+	private long boardcategoryno;	// 실제로 사용자에게 출력하는 게시글 번호
 	private String boardtitle;
 	private String boardcontenttype;
 	private String boardcontent;
 	private int boardviewcount;
 	private String boarddatetime;
-	private int boardcategory;
-	private int memberno;
-	private boolean boardattachment;	// FK
-		// true이면 첨부파일이 있는 게시글이므로 보드어테치먼트 테이블에서 boardno로 검색할것
+	private long memberno;
 	
 	@Override
-	public String toString() {return super.toString();}
-	
+	public String toString() {
+		return super.toString();
+	}
+
 	public Board() {}
-	
-	public Board(long boardno, String boardtitle, String boardcontenttype, String boardcontent, int boardviewcount,
-			String boarddatetime, int boardcategory, int memberno, boolean boardattachment) {
+
+	public Board(long boardpkno, byte boardcategory, long boardcategoryno, String boardtitle, String boardcontenttype,
+			String boardcontent, int boardviewcount, String boarddatetime, long memberno) {
 		super();
-		this.boardno = boardno;
+		this.boardpkno = boardpkno;
+		this.boardcategory = boardcategory;
+		this.boardcategoryno = boardcategoryno;
 		this.boardtitle = boardtitle;
 		this.boardcontenttype = boardcontenttype;
 		this.boardcontent = boardcontent;
 		this.boardviewcount = boardviewcount;
 		this.boarddatetime = boarddatetime;
-		this.boardcategory = boardcategory;
 		this.memberno = memberno;
-		this.boardattachment = boardattachment;
 	}
 
-	public long getBoardno() {
-		return boardno;
+	public long getBoardpkno() {
+		return boardpkno;
 	}
 
-	public void setBoardno(long boardno) {
-		this.boardno = boardno;
+	public void setBoardpkno(long boardpkno) {
+		this.boardpkno = boardpkno;
+	}
+
+	public byte getBoardcategory() {
+		return boardcategory;
+	}
+
+	public void setBoardcategory(byte boardcategory) {
+		this.boardcategory = boardcategory;
+	}
+
+	public long getBoardcategoryno() {
+		return boardcategoryno;
+	}
+
+	public void setBoardcategoryno(long boardcategoryno) {
+		this.boardcategoryno = boardcategoryno;
 	}
 
 	public String getBoardtitle() {
@@ -79,28 +96,12 @@ public class Board {
 		this.boarddatetime = boarddatetime;
 	}
 
-	public int getBoardcategory() {
-		return boardcategory;
-	}
-
-	public void setBoardcategory(int boardcategory) {
-		this.boardcategory = boardcategory;
-	}
-
-	public int getMemberno() {
+	public long getMemberno() {
 		return memberno;
 	}
 
-	public void setMemberno(int memberno) {
+	public void setMemberno(long memberno) {
 		this.memberno = memberno;
-	}
-
-	public boolean isBoardattachment() {
-		return boardattachment;
-	}
-
-	public void setBoardattachment(boolean boardattachment) {
-		this.boardattachment = boardattachment;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package dao;
 
+import java.sql.Statement;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,23 +12,44 @@ public class BoardDao extends Dao{
 	public static BoardDao instance = new BoardDao();
 	public BoardDao() {super();}
 	
+	
+	
 	// 1. 글 쓰기 메서드
-	public byte saveSummernote(Board board) {
-		String sql = "insert into board(boardtitle, boardcontenttype, boardcontent, "
-				+ "boardcategory, memberno, boardattachment) values(?, ?, ?, ?, ?, ?)"; 
+	public int saveSummernote(Board board) {
+		String sql = "select max(boardcategoryno) from board where boardcategory = ?";
+		long boardcategoryno;
 		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, board.getBoardtitle());
-			ps.setString(2, board.getBoardcontenttype());
-			ps.setString(3, board.getBoardcontent());
-			ps.setInt(4, board.getBoardcategory());
-			ps.setInt(5, board.getMemberno());
-			ps.setBoolean(6, board.isBoardattachment());
+			ps=con.prepareStatement(sql);
+			ps.setByte(1, board.getBoardcategory());
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				boardcategoryno=rs.getLong(1)+1;
+			}else boardcategoryno=-1;
+		} catch (Exception e) {System.out.println("BoardDao_saveSummernote(1)_Exception : "+e);return -1;}
+		
+		
+		sql = "insert into board(boardcategory, boardcategoryno, boardtitle, "
+				+ "boardcontenttype, boardcontent, memberno ) values(?, ?, ?, ?, ?, ?)"; 
+		try {
+			ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			ps.setByte(1, board.getBoardcategory());
+			
+			if(boardcategoryno==-1) ps.setLong(2, 1);	// 해당 게시판에 아무도 글 쓴 사람이 없으면 게시물번호 1
+			else ps.setLong(2, boardcategoryno);		// 해당 게시판 가장 마지막 게시글번호 +1
+			
+			ps.setString(3, board.getBoardtitle());
+			ps.setString(4, board.getBoardcontenttype());
+			ps.setString(5, board.getBoardcontent());
+			ps.setLong(6, board.getMemberno());
 			ps.executeUpdate();
-			return 1;
-		} catch (Exception e) {System.out.println("BoardDao_saveSummernote_Exception : "+e);}
-		return 0;
+			rs = ps.getGeneratedKeys();	// pk값 반환
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {System.out.println("BoardDao_saveSummernote(2)_Exception : "+e);}
+		return -1;
 	}
+	
 	// 2. 모든 글 불러오기
 	public JSONArray getsearchlist (int boardcategory) {
 		String sql="select * from board where boardcategory=?";

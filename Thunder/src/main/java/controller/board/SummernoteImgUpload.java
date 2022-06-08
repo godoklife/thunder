@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/board/cs/SummernoteImgUpload")
+@WebServlet("/board/SummernoteImgUpload")
 public class SummernoteImgUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
