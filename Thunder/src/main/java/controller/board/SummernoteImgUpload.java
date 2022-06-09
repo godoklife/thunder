@@ -58,7 +58,7 @@ public class SummernoteImgUpload extends HttpServlet {
 		
 		tmpPath+="\\"+name;
 		
-		String imgPath="\\mohae\\img\\tmp\\"+name;
+		String imgPath="\\Thunder\\img\\tmp\\"+name;
 		
 		FileInputStream fis = new FileInputStream(mr.getFile("file"));
 		System.out.println("등록한 파일의 크기 : "+fis.available());

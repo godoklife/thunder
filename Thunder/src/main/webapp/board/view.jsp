@@ -26,7 +26,7 @@
 		<div id="test2">
 			<button class="zindex2_btn" onclick="makehogang()"> 내꺼도 중고로 팔기! </button>
 			
-			<div id="map" style="width:3840px;height:2400px; z-index:1;">
+			<div id="map" style="width:100%;height:100%; z-index:1;">
 			</div>	<!-- 나중에 반응형으로 해상도 조절 요망. 클라이언트 리소스 무지막지하게 잡아먹음 -->
 		</div>
 		<div class="zindex2_div right_position row" id="snote_div">

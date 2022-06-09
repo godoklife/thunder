@@ -88,14 +88,9 @@ public class BoardDao extends Dao{
 			JSONArray array = new JSONArray();
 			while(rs.next()) {
 				JSONObject object = new JSONObject();
-				object.put("boardno", rs.getInt(1));
-				object.put("boardtitle", rs.getString(2));
-				object.put("boardcontenttype", rs.getString(3));
-				object.put("boardcontent", rs.getString(4));
-				object.put("boardviewcount", rs.getInt(5));
-				object.put("boarddatetime", rs.getString(6));
-				object.put("boardcategory", rs.getInt(7));
-				object.put("memberno", rs.getInt(8));
+				/////////////////////
+				// 미구현
+				////////////////////
 				array.put(object);
 			}
 			return array;
@@ -104,26 +99,74 @@ public class BoardDao extends Dao{
 	}
 	
 	// 4. 하나의 글 보기
-	public JSONObject getBoard(int boardno) {
-		String sql="select * from board where boardno=?";
+	public JSONObject getBoard(long boardpkno) {
+		String sql="select * from board, product where product.boardpkno=? "
+				+ "and board.boardpkno = product.boardpkno";
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, boardno);
+			ps.setLong(1, boardpkno);
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if(rs.next()) {	// 만약 조회가 성공한다면 해당 글은 중고거래글
 				JSONObject object = new JSONObject();
-				object.put("boardno", rs.getInt(1));
-				object.put("boardtitle", rs.getString(2));
-				object.put("boardcontenttype", rs.getString(3));
-				object.put("boardcontent", rs.getString(4));
-				object.put("boardviewcount", rs.getInt(5));
-				object.put("boarddatetime", rs.getString(6));
-				object.put("boardcategory", rs.getInt(7));
-				object.put("memberno", rs.getInt(8));
+				object.put("boardpkno", rs.getLong(1));
+				object.put("boardcategory", rs.getByte(2));
+				object.put("boardcategoryno", rs.getLong(3));
+				object.put("boardtitle", rs.getString(4));
+				object.put("boardcontenttype", rs.getString(5));
+				object.put("boardcontent", rs.getString(6));
+				object.put("boardviewcount", rs.getInt(7));
+				object.put("boarddatetime", rs.getString(8));
+				object.put("memberno", rs.getLong(9));
+				object.put("productno", rs.getLong(10));
+				object.put("productactive", rs.getByte(11));
+				object.put("productqulity", rs.getString(12));
+				object.put("productprice", rs.getLong(13));
+				object.put("productcoordinate", rs.getString(14));
 				return object;
+			}else {
+				sql = "select * from board = ?";
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, boardpkno);
+				rs = ps.executeQuery();
+				if(rs.next()) {	// 여기서 쿼리가 성공하면 
+					JSONObject object = new JSONObject();
+					object.put("boardpkno", rs.getLong(1));
+					object.put("boardcategory", rs.getByte(2));
+					object.put("boardcategoryno", rs.getLong(3));
+					object.put("boardtitle", rs.getString(4));
+					object.put("boardcontenttype", rs.getString(5));
+					object.put("boardcontent", rs.getString(6));
+					object.put("boardviewcount", rs.getInt(7));
+					object.put("boarddatetime", rs.getString(8));
+					object.put("memberno", rs.getLong(9));
+					return object;
+				}
+				return null;
 			}
 		} catch (Exception e) {System.out.println("BoardDao_getsearch()_exception : "+e);}
 		return null;
+	}
+	
+	// 5. 조회수 증가 처리
+	public void viewCnt(long boardpkno) {
+		String sql = "update board set boardviewcount = boardviewcount + 1 where boardpkno = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, boardpkno);
+			ps.executeUpdate();
+		} catch (Exception e) {System.out.println("BoardDao_viewCnt_Exception : "+e);}
+	}
+	
+	// 6. 게시글 삭제
+	public boolean delete(long boardpkno) {
+		String sql = "delete from board where boardpkno=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, boardpkno);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {System.out.println("BoardDao_delete_exception : "+e);} 
+		return false;
 	}
 }

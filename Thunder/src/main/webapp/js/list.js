@@ -25,7 +25,7 @@ function getboardlist(boardcategory){
 				for(let blf=jsonArray.length-1; blf>=0; blf--){
 					html+=	'<tr>'+
 								'<td>'+jsonArray[blf]['boardcategoryno']+'</td>'+
-								'<td class="boardlist_title"><a href="/Thunder/board/content.jsp?no='+jsonArray[blf]['boardpkno']+'">'+jsonArray[blf]['boardtitle']+'</a></td>'+
+								'<td class="boardlist_title" onclick="showct('+jsonArray[blf]['boardpkno']+')">'+jsonArray[blf]['boardtitle']+'</a></td>'+
 								'<td>'+jsonArray[blf]['memberno']+'</td>'+	// 제품명으로 바꿔야할듯
 								'<td>'+jsonArray[blf]['boardviewcount']+'</td>'+
 								'<td>'+jsonArray[blf]['boarddatetime']+'</td>'+
@@ -36,3 +36,12 @@ function getboardlist(boardcategory){
 		}
 	});
 };
+
+function showct(boardpkno){
+	$.ajax({	// 조회수 증가 처리용 비동기통신
+		url:"Viewcnt",
+		data:{"boardpkno":boardpkno}
+	})
+	window.location.href="/Thunder/board/content.jsp?no="+boardpkno;
+};
+

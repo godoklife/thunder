@@ -7,29 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import dao.ProductDao;
 
-import dao.BoardDao;
-
-@WebServlet("/board/ViewBoard")
-public class ViewBoard extends HttpServlet {
+@WebServlet("/GetLatLng")
+public class GetLatLng extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ViewBoard() {
+    public GetLatLng() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardno = Integer.parseInt(request.getParameter("boardno"));
-		int boardcategory = Integer.parseInt(request.getParameter("boardcategory"));
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
-		response.getWriter().print(BoardDao.instance.getBoard(boardno));
+		response.getWriter().print(ProductDao.instance.getLatLng());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

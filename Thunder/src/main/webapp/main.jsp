@@ -21,7 +21,7 @@ a:hover {
 <a href="/Thunder/board/view.jsp"><h2>중고물품리스트</h2></a><br>
 <a href="/Thunder/board/view2.jsp"><h2>기능만구현 [ 게시글등록 ]</h2></a><br>
 <a href="/Thunder/board/list.jsp"><h2>기능만구현 [ 게미술 목록 출력 ->> 출ㄺ숭]</h2></a><br>
-<a href="/Thunder/board/view3.jsp"><h2>기능만구현 [ 게시글보기 ->> 미구현 ]</h2></a><br>
+<a href="/Thunder/map.jsp"><h2>핀이 꽂아져있는 지도 [  ]</h2></a><br>
 	
 
 </body>

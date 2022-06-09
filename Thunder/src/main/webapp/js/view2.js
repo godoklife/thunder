@@ -16,8 +16,9 @@ function show_snote(){
 		maxHeight: 600,
 		callbacks:{
 			onImageUpload: function(files){
-				for(var i=0; i<files.length; i++)
-				uploadSummernoteImageFile(files[i],this);
+				for(var i=0; i<files.length; i++){
+					uploadSummernoteImageFile(files[i],this);
+				}
 			},
 			onPaste: function(e){
 				var clipboardData = e.originalEvent.clipboardData;
@@ -67,7 +68,6 @@ function submit(){
 	let memberno = 1;	// 임시지정
 	var summernoteContent = $('#summernote').summernote('code');
 	console.log("작성한 내용 : "+summernoteContent);
-	alert("콘솔로그를 확인하시오.");
 	
 	$.ajax({
 		url:"SaveSummernote",
