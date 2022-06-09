@@ -3,6 +3,15 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     padding: 0;
 }
 
+a{
+	color: #333333;
+	text-decoration: none;
+}
+a:hover {
+	color: #333333;
+	text-decoration: none;
+}
+
 .zindex2_btn{
 	border: solid 1px red;
 	z-index: 2;
@@ -31,4 +40,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 	top: 100px;
 	display: inline-flex;
 	background-color: #ffffff;
+}
+.boardlist_title{	/* list.js ->> function getboardlist */
+	text-align:left; 
+	padding-left:5%;
+	cursor:pointer;
 }

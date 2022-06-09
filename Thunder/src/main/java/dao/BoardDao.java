@@ -51,7 +51,8 @@ public class BoardDao extends Dao{
 	}
 	
 	// 2. 모든 글 불러오기
-	public JSONArray getsearchlist (int boardcategory) {
+	public JSONArray getsearchlist (byte boardcategory) {
+		
 		String sql="select * from board where boardcategory=?";
 		try {
 			ps = con.prepareStatement(sql);
@@ -60,14 +61,15 @@ public class BoardDao extends Dao{
 			JSONArray array = new JSONArray();
 			while(rs.next()) {
 				JSONObject object = new JSONObject();
-				object.put("boardno", rs.getInt(1));
-				object.put("boardtitle", rs.getString(2));
-				object.put("boardcontenttype", rs.getString(3));
-				object.put("boardcontent", rs.getString(4));
-				object.put("boardviewcount", rs.getInt(5));
-				object.put("boarddatetime", rs.getString(6));
-				object.put("boardcategory", rs.getInt(7));
-				object.put("memberno", rs.getInt(8));
+				object.put("boardpkno", rs.getLong(1));
+				object.put("boardcategory", rs.getByte(2));
+				object.put("boardcategoryno", rs.getLong(3));
+				object.put("boardtitle", rs.getString(4));
+				object.put("boardcontenttype", rs.getString(5));
+				object.put("boardcontent", rs.getString(6));
+				object.put("boardviewcount", rs.getInt(7));
+				object.put("boarddatetime", rs.getString(8));
+				object.put("memberno", rs.getLong(9));
 				array.put(object);
 			}
 			return array;
