@@ -28,7 +28,8 @@ public class ProductDao extends Dao{
 	
 	// 2. 판매중인 제품만 좌표값(경도, 위도 형식으로 썰어서) 빼오기
 	public JSONObject getLatLng() {
-		String sql = "select productcoordinate from product where productactive = 1";
+		String sql = "select productcoordinate, productno"
+				+ " from product where productactive = 1";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -38,6 +39,7 @@ public class ProductDao extends Dao{
 				JSONObject object = new JSONObject();
 				object.put("lat", rs.getString(1).split(", ")[0]);
 				object.put("lng", rs.getString(1).split(", ")[1]);
+				object.put("pno", rs.getString(2));
 				array.put(object);
 			}
 			tmp.put("positions", array);
