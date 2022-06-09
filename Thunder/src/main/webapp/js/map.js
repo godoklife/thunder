@@ -1,4 +1,13 @@
-let jsonArray;
+let jsonArray;	// 지도에 뿌릴 좌표가 담긴 제이슨
+let json;		// 게시글이 담긴 제이슨
+
+$(function(){
+	let tv_html='';
+	
+//	html=
+	
+	$("#tv").html(tv_html)
+})
 
 $(function(){
 	markedMap();
@@ -23,10 +32,20 @@ function test(){
 };
 
 
-function showsidebar(productno){
-	
-}
-
+function showsidebar(boardpkno){
+	$.ajax({
+		url:"board/ViewContent",
+		data:{"boardpkno":boardpkno},
+		success:function(args){
+			if(args===null){
+				alert("잘못된 선택입니다. null");
+				return;
+			}
+			json=args;
+			
+		}
+	})
+};
 
 
 
@@ -65,8 +84,8 @@ function markedMap(){
             });
             
               kakao.maps.event.addListener(marker, 'click', function() {  
-					console.log("사용자가 클릭한 pno : "+position.pno);
-					
+					console.log("사용자가 클릭한 boardpkno : "+position.boardpkno);
+					showsidebar(position.boardpkno);
 				});
             
 	        return marker;

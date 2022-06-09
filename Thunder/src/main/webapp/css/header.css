@@ -46,3 +46,14 @@ a:hover {
 	padding-left:5%;
 	cursor:pointer;
 }
+
+#right_sidebar{
+	background-color: #ffffff;
+	height : 100%;
+	position : fixed;
+	top: 0;			/* 위에서 0px만큼 떨어짐 */
+	right: 0;	/* 왼쪽에서 -200px만큼 이동 : 숨기기 */
+	width:25vw;
+	z-index: 3;
+}
+

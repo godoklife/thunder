@@ -1,0 +1,7 @@
+$.ajax({
+		url:"",
+		data:{},
+		success:function(args){
+			}
+		}
+	})

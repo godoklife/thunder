@@ -26,9 +26,26 @@ public class ProductDao extends Dao{
 		return false;
 	}
 	
-	// 2. 판매중인 제품만 좌표값(경도, 위도 형식으로 썰어서) 빼오기
+	// 2. R
+	public Product read(long productno) {
+		String sql = "select * from product where productno = ?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, productno);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				Product product = new Product(rs.getLong(1), rs.getByte(2), 
+						rs.getString(3), rs.getLong(4), rs.getString(5), rs.getLong(6));
+				return product;
+			}
+		} catch (Exception e) {System.out.println("ProductDao_read_Exception : "+e);}
+		return null;
+	}
+	
+	// 3. 판매중인 제품만 좌표값(경도, 위도 형식으로 썰어서) 빼오기
 	public JSONObject getLatLng() {
-		String sql = "select productcoordinate, productno"
+		String sql = "select productcoordinate, boardpkno"
 				+ " from product where productactive = 1";
 		try {
 			ps = con.prepareStatement(sql);
@@ -39,7 +56,7 @@ public class ProductDao extends Dao{
 				JSONObject object = new JSONObject();
 				object.put("lat", rs.getString(1).split(", ")[0]);
 				object.put("lng", rs.getString(1).split(", ")[1]);
-				object.put("pno", rs.getString(2));
+				object.put("boardpkno", rs.getString(2));
 				array.put(object);
 			}
 			tmp.put("positions", array);
