@@ -10,7 +10,7 @@
 <%@include file="header.jsp" %>
 
 	
-	<div id="map" style="width:100vw;height:100vh; z-index:1; "></div>
+	<div id="map" style="width:75vw;height:100vh; z-index:1; "></div>
 	<!--  vh:viewport height, 부모와 상관없이 크기를 %단위로 설정.  -->
 	
 	<div id="right_sidebar"><!--   -->
