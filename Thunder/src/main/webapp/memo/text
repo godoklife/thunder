@@ -18,3 +18,12 @@ $(document).mouseup(function(e){	// 도큐먼트가 아니라 지도를 지정�
 	$("#right_sidebar").animate({width:"25vw"},200);
 	//console.log(rsb.style.width);
 });
+
+
+
+
+
+
+login.js
+function 인증확인() 
+// 현재 암호가 틀리면 로그인 되게 설정되어있음. 나중에는 (인증번호 != 난수)로 바꿀것.
