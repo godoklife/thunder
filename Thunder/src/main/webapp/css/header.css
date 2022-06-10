@@ -47,6 +47,12 @@ a:hover {
 	cursor:pointer;
 }
 
+#map{
+	width:75vw;
+	height:100vh; 
+	z-index:1;
+}
+
 #right_sidebar{
 	background-color: #ffffff;
 	height : 100%;

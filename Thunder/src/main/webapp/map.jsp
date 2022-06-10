@@ -9,14 +9,13 @@
 <body>
 <%@include file="header.jsp" %>
 
-	
-	<div id="map" style="width:75vw;height:100vh; z-index:1; "></div>
-	<!--  vh:viewport height, 부모와 상관없이 크기를 %단위로 설정.  -->
+	<!--  모든 div의 스타일은 header.jsp의 css에 들어있읍니다. -->
+	<div id="map">
+		<!--  다음 지도 생성 구역 -->
+	</div>
 	
 	<div id="right_sidebar"><!--   -->
-		<div class="row" id="tv">
-			<div class=""></div>
-		</div>
+		<!--  우측 매뉴 출력 구역 -->
 	</div>
 	
 	
@@ -24,5 +23,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9f7357ce81adbf018af6a38f1c214342&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript" src="/Thunder/js/map.js"></script>	
+<script type="text/javascript" src="/Thunder/js/map_list.js"></script>
+<script type="text/javascript" src="/Thunder/js/map_content.js"></script>
 </body>
 </html>

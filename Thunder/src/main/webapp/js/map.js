@@ -2,39 +2,29 @@ let jsonArray;	// 지도에 뿌릴 좌표가 담긴 제이슨
 let json;		// 게시글이 담긴 제이슨
 
 $(function(){
-	let tv_html='';
-	
-//	html=
-	
-	$("#tv").html(tv_html)
-})
+	markedMap();	// 지도 그리기 메서드 호출
+	makeSidebarTable();	// 오른쪽 사이드바 그리기 호출
+});
 
-$(function(){
-	markedMap();
-	
-	//test();
-})
+window.addEventListener('resize',resizeMap());	
+	// 브라우저 창이 바뀌면 다음 지도 크기도 리사이징. 반복실행 제한 추가해야필요.(현재 제한 미지정.->> 리소스 무지막지하게 먹음)
 
-window.addEventListener('resize',resizeMap());
+// 지도 '클릭'하면 사이드바 크기만 줄어드는 메서드
+$(document).mouseup(function(e){	
+	var rsb= document.getElementById('#right_sidebar');
+	$("#right_sidebar").animate({width:"25vw"},200);
+	//console.log(rsb.style.width);
+});
 
-function test(){
-	$.ajax({
-		url:"GetLatLng",
-		data:{},
-		success:function(args){
-			if(args===null){
-				alert("서버와 통신이 불가합니다. 잠시후에 시도해주세요. : 좌표값이 null");
-				window.history.back();
-				return;
-			}
-			jsonArray=args;
-			console.log(jsonArray);
-		}
-	})
+function makeSidebarTable(){
+		let html=	'<div class="row" id="tv">'+
+						'<table id="showboardlist" class="table table-hover text-center">'+
+						'</table>'+
+					'</div>';
+		$("#right_sidebar").html(html);			
 };
 
-
-function showsidebar(boardpkno){
+function showsidebar(boardpkno){	// used markedMap()-var marker
 	$.ajax({
 		url:"board/ViewContent",
 		data:{"boardpkno":boardpkno},
@@ -44,14 +34,9 @@ function showsidebar(boardpkno){
 				return;
 			}
 			json=args;
-			
 		}
 	})
 };
-
-
-
-
 
 function markedMap(){
 	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
@@ -89,13 +74,13 @@ function markedMap(){
 	    clusterer.addMarkers(markers);
 	});
 	
-}
+};
 
 function resizeMap() {
     var mapContainer = document.getElementById('map');
     mapContainer.style.width = '75vw';
     mapContainer.style.height = '100vh'; 
-}
+};
 
 function relayout() {    
     
@@ -103,4 +88,4 @@ function relayout() {
     // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
     // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
     map.relayout();
-}
+};
