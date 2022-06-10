@@ -5,3 +5,7 @@ $.ajax({
 			}
 		}
 	})
+	
+	
+탐켓 서버 xml	
+<Context docBase="C:\Users\Public\Pictures\" path="/Thunder/img" reloadable="true"/>
