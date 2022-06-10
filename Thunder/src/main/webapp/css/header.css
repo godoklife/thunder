@@ -2,7 +2,11 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     margin: 0;
     padding: 0;
 }
-
+#bctn p img{
+	display:block;
+	width:90%;
+	height:auto;
+}
 a{
 	color: #333333;
 	text-decoration: none;
@@ -26,7 +30,6 @@ a:hover {
 	z-index: 2;
 	
 }
-
 .left_position{
 	position: absolute;
 	left: 50px;
@@ -52,7 +55,6 @@ a:hover {
 	height:100vh; 
 	z-index:1;
 }
-
 #right_sidebar{
 	background-color: #ffffff;
 	height : 100%;
@@ -61,5 +63,12 @@ a:hover {
 	right: 0;	/* 왼쪽에서 -200px만큼 이동 : 숨기기 */
 	width:25vw;
 	z-index: 3;
+	overflow: auto;
 }
+
+
+.overflowbar{
+	overflow-y:auto;
+}
+
 
