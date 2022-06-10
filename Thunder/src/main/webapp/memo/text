@@ -9,3 +9,12 @@ $.ajax({
 	
 탐켓 서버 xml	
 <Context docBase="C:\Users\Public\Pictures\" path="/Thunder/img" reloadable="true"/>
+
+
+
+
+$(document).mouseup(function(e){	// 도큐먼트가 아니라 지도를 지정해야함.
+	var rsb= document.getElementById('#right_sidebar');
+	$("#right_sidebar").animate({width:"25vw"},200);
+	//console.log(rsb.style.width);
+});

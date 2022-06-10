@@ -10,11 +10,7 @@ window.addEventListener('resize',resizeMap());
 	// 브라우저 창이 바뀌면 다음 지도 크기도 리사이징. 반복실행 제한 추가해야필요.(현재 제한 미지정.->> 리소스 무지막지하게 먹음)
 
 // 지도 '클릭'하면 사이드바 크기만 줄어드는 메서드
-$(document).mouseup(function(e){	
-	var rsb= document.getElementById('#right_sidebar');
-	$("#right_sidebar").animate({width:"25vw"},200);
-	//console.log(rsb.style.width);
-});
+
 
 function makeSidebarTable(){
 		let html=	'<div class="row" id="tv">'+

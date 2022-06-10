@@ -23,7 +23,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9f7357ce81adbf018af6a38f1c214342&libraries=services,clusterer,drawing"></script>
 
 <script type="text/javascript" src="/Thunder/js/map.js"></script>	
-<script type="text/javascript" src="/Thunder/js/map_list.js"></script>
+<script type="text/javascript" src="/Thunder/js/map_sidebar.js"></script>
 <script type="text/javascript" src="/Thunder/js/map_content.js"></script>
 </body>
 </html>
